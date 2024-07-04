@@ -1,2 +1,4 @@
-game.wasm
-macroquad_bundle.js
+*.wasm
+game_bundle.js
+wbg_game.js
+*.wat

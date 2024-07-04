@@ -21,8 +21,19 @@
 
 <body>
     <canvas id="glcanvas" tabindex='1'></canvas>
-    <script src="./macroquad_bundle.js"></script>
-    <script>load("./game.wasm");</script>
+    <script src="./game_bundle.js"></script>
+    <script type="module">
+        import {initSync, set_wasm } from "./wbg_game.js";
+        let wbg = initSync();
+        await init_storage();
+        miniquad_add_plugin({
+            register_plugin: (a) => (a.wbg = wbg),
+            on_init: () => set_wasm(wasm_exports),
+            version: "0.0.1",
+            name: "wbg",
+        });
+        load("./game_bg.wasm");
+    </script>
 </body>
 
 </html>
